@@ -14,7 +14,8 @@ router.get('/dash',middleware, async(req,res)=>{
         if(!exist){
             return res.status(400).send('user not found')
         }
-        res.json(exist);
+        let todos = await Todo.find({userId:req.user.id})
+        res.json({exist,todos});
 
     }
     catch(err){
